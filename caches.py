@@ -1,7 +1,7 @@
 import pandas as pd
 import warnings as wn
 import os
-from PyQt5 import QtWidgets, QtGui, QtCore, uic
+from PyQt5 import QtWidgets, uic
 import sys
 
 
