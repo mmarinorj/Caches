@@ -70,7 +70,7 @@ def salvar():
 
     dialog = box.question(tela, "Sucesso!", f"O arquivo foi salvo com sucesso como:\n\n{arquivo}\n\nDeseja "
                                             f"Abrir o arquivo agora?",
-                          box.StandardButton.Yes | box.StandardButton.No)
+                                            box.StandardButton.Yes | box.StandardButton.No)
     print(arquivo)
     if dialog != 65536:
         os.popen(arquivo)
