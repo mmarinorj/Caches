@@ -21,6 +21,11 @@ arquivo_fonte = ""
 
 def salvar():
     global aba, freelas, semana, totais, seg, ter, qua, qui, sex, sab, dom, arquivo_fonte
+    while len(arquivo_fonte) < 1:
+        arquivo_fonte = QtWidgets.QFileDialog.getOpenFileName(None, "Selecionar Fonte de Dados", "",
+                                                              "XLSX files (*.xlsx)")[0]
+        with open('aceobd' + '.cfg', 'w') as arquivo:
+            arquivo.write(arquivo_fonte)
     if tela.radioButton.isChecked():
         aba = -2
     else:
@@ -95,10 +100,30 @@ def sair_app():
 
 def fonte():
     global arquivo_fonte
-    arquivo_fonte = QtWidgets.QFileDialog.getOpenFileName(None, "Selecionar Fonte de Dados", "",
-                                                          "XLSX files (*.xlsx)")[0]
-    with open('aceobd' + '.cfg', 'w') as arquivo:
-        arquivo.write(arquivo_fonte)
+    if os.path.isfile('aceobd.cfg'):
+        with open('aceobd.cfg', 'r') as linha:
+            arquivo_fonte = linha.readline().strip()
+    if len(arquivo_fonte) > 0:
+        dialog = box.question(tela, "Fonte de dados", f"O arquivo fonte de dados está selecionado"
+                                                   f"no caminho:\n\n{arquivo_fonte}\n\n"
+                                                   f"Deseja selecionar outro arquivo?",
+                           box.StandardButton.Yes | box.StandardButton.No)
+        if dialog != 65536:
+            arquivo_fonte = QtWidgets.QFileDialog.getOpenFileName(None, "Selecionar Fonte de Dados", "",
+                                                                  "XLSX files (*.xlsx)")[0]
+            if len(arquivo_fonte) == 0:
+                pass
+            else:
+                with open('aceobd' + '.cfg', 'w') as arquivo:
+                    arquivo.write(arquivo_fonte)
+    else:
+        arquivo_fonte = QtWidgets.QFileDialog.getOpenFileName(None, "Selecionar Fonte de Dados", "",
+                                                              "XLSX files (*.xlsx)")[0]
+        if len(arquivo_fonte) == 0:
+            pass
+        else:
+            with open('aceobd' + '.cfg', 'w') as arquivo:
+                arquivo.write(arquivo_fonte)
 
 
 def iniciar():
@@ -126,6 +151,7 @@ tela.pushButton_2.clicked.connect(salvar)
 tela.actionQuit.triggered.connect(sair_app)
 tela.actionFonte_de_Dados.triggered.connect(fonte)
 box = QtWidgets.QMessageBox
+
 tela.show()
 iniciar()
 app.exec()
