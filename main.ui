@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>imagens/Logo JAPIASSÚ símbolo.png</normaloff>imagens/Logo JAPIASSÚ símbolo.png</iconset>
+    <normaloff>imagens/Logo-JAPIASSÚ-símbolo.ico</normaloff>imagens/Logo-JAPIASSÚ-símbolo.ico</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -67,9 +67,10 @@ QPushButton {
 	color:rgb(0,0,0);
 	border-radius: 12px;
 }
-QPushButton:disabled {
-	background-color: rgb(54, 82, 50);
-	color: rgb(120, 120, 120);
+QPushButton:pressed {
+	background-color: rgb(200, 200, 0);
+	color:rgb(0,0,0);
+	border-radius: 12px;
 }</string>
     </property>
     <property name="text">

@@ -17,10 +17,11 @@ semana = []
 totais = []
 aba = 0
 arquivo_fonte = ""
+arquivo = ""
 
 
 def salvar():
-    global aba, freelas, semana, totais, seg, ter, qua, qui, sex, sab, dom, arquivo_fonte
+    global aba, freelas, semana, totais, seg, ter, qua, qui, sex, sab, dom, arquivo_fonte, arquivo
     while len(arquivo_fonte) < 1:
         arquivo_fonte = QtWidgets.QFileDialog.getOpenFileName(None, "Selecionar Fonte de Dados", "",
                                                               "XLSX files (*.xlsx)")[0]
@@ -43,14 +44,8 @@ def salvar():
             if len(l) > 0:
                 freelas.append(l[0])
 
-    # print(freelas)
-    # print(len(freelas))
-    # print(len(set(freelas)))
     freelas = list(set(freelas))
     freelas.sort()
-    # print(freelas)
-
-    # print(len(freelas))
 
     for f in freelas:
         tempx = 0
@@ -72,6 +67,13 @@ def salvar():
         box.about(tela, 'Erro tentando salvar o arquivo!', f'O arquivo não pode ser salvo!\n'
                                                            f'Verifique se o mesmo está aberto para edição\n'
                                                            f'ou protegido contra gravação e tente novamente.')
+
+    dialog = box.question(tela, "Sucesso!", f"O arquivo foi salvo com sucesso como:\n\n{arquivo}\n\nDeseja "
+                                            f"Abrir o arquivo agora?",
+                          box.StandardButton.Yes | box.StandardButton.No)
+    print(arquivo)
+    if dialog != 65536:
+        os.popen(arquivo)
 
 
 def cache(dia, tab):
@@ -105,9 +107,9 @@ def fonte():
             arquivo_fonte = linha.readline().strip()
     if len(arquivo_fonte) > 0:
         dialog = box.question(tela, "Fonte de dados", f"O arquivo fonte de dados está selecionado"
-                                                   f"no caminho:\n\n{arquivo_fonte}\n\n"
-                                                   f"Deseja selecionar outro arquivo?",
-                           box.StandardButton.Yes | box.StandardButton.No)
+                                                      f"no caminho:\n\n{arquivo_fonte}\n\n"
+                                                      f"Deseja selecionar outro arquivo?",
+                                                      box.StandardButton.Yes | box.StandardButton.No)
         if dialog != 65536:
             arquivo_fonte = QtWidgets.QFileDialog.getOpenFileName(None, "Selecionar Fonte de Dados", "",
                                                                   "XLSX files (*.xlsx)")[0]
