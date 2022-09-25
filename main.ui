@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>imagens/Logo-JAPIASSÚ-símbolo.ico</normaloff>imagens/Logo-JAPIASSÚ-símbolo.ico</iconset>
+    <normaloff>imagens/japi.ico</normaloff>imagens/japi.ico</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -36,8 +36,11 @@
    <string notr="true">background-color: rgb(30, 30, 30);
 color: rgb(255, 255, 255);</string>
   </property>
-  <property name="toolButtonStyle">
-   <enum>Qt::ToolButtonIconOnly</enum>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
