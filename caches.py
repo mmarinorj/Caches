@@ -84,6 +84,8 @@ def cache(dia, tab):
         temp = list(df.loc()[j])
         if pd.isnull(temp[0]):
             pass
+        elif pd.isnull(temp[1]):
+            pass
         elif temp[0] == 'EVENTO'\
                 or temp[0] == 'MONTAGEM'\
                 or temp[0] == 'ENTREGA MATERIAL'\
